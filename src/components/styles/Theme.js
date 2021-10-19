@@ -1,7 +1,10 @@
-import React from "react";
+import { useState } from "react";
 
-const Theme = () => {
-  return <div></div>;
+export const Theme = () => {
+  const [theme, setTheme] = useState("morning");
+
+  const toggleTheme = () => {
+    theme === "morning" ? setTheme("morning") : setTheme("night");
+  };
+  return [theme, toggleTheme];
 };
-
-export default Theme;

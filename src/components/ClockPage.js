@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import GeoLocation from "./GeoLocation";
+import "./css/clockpage.css";
 
 const ClockPage = () => {
   const [quotes, setQuotes] = useState();
@@ -28,16 +28,14 @@ const ClockPage = () => {
       <div>
         {quotes && (
           <>
-            <div>
-              <h1>{quotes.quote}</h1>
-              <p>{quotes.author}</p>
+            <div className="quotes-div">
+              <p>"{quotes.quote}"</p>
+              <p>
+                <strong>{quotes.author}</strong>
+              </p>
             </div>
           </>
         )}
-
-        <div>
-          <GeoLocation />
-        </div>
       </div>
     </div>
   );

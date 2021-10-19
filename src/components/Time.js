@@ -1,8 +1,9 @@
-import React, { useState, useEffect, ReactFitText } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Time = ({ location }) => {
   const [date, setdate] = useState();
+
   useEffect(() => {
     dateData();
   }, []);
