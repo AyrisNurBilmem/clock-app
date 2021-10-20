@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Time from "./Time";
 import Clock from "react-live-clock";
+import * as BsIcons from "react-icons/bs";
+import "./css/clockpage.css";
 
-const GeoLocation = () => {
+const GeoLocation = ({ buttonPress, toggleButton }) => {
   const [location, setLocation] = useState();
+
   useEffect(() => {
     locationData();
   }, []);
@@ -14,22 +17,33 @@ const GeoLocation = () => {
     );
     setLocation(result.data);
   };
+
   return (
     <div>
       {location && (
         <>
-          <Clock
-            format={"HH:mm"}
-            ticking={true}
-            timezone={`${location.country_name}`}
-          />
-          <div>
-            <p>
-              in {location.city}, {location.country_name}
-            </p>
+          <div className="clock-div">
+            <Clock
+              className="clock"
+              format={"HH:mm"}
+              ticking={true}
+              timezone={`${location.country_name}`}
+            />
+            <p>BST</p>
           </div>
-          <button>More</button>
-          <Time location={location} />
+          <div className="small-location-button-div ">
+            <p>
+              <strong>
+                in {location.city}, {location.country_name}
+              </strong>
+            </p>
+            <button onClick={toggleButton}>
+              {buttonPress === true ? "LESS" : "MORE"}
+              <BsIcons.BsFillArrowDownCircleFill size="24" />
+            </button>
+          </div>
+
+          {buttonPress === true ? <Time location={location} /> : <></>}
         </>
       )}
     </div>
